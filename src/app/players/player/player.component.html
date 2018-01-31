@@ -1,3 +1,14 @@
-<p>
-  player works!
-</p>
+<form #playerForm="ngForm" (ngSubmit)="onSubmit(playerForm)">
+  <div class="form-group">
+    <label>Name</label>
+    <input class="form-control" name="name" #name="ngModel" [(ngModel)]="playerService.selectedPlayer.name" placeholder="Full Name" required/>
+  </div>
+  <div class="form-group">
+    <label>Position</label>
+    <input class="form-control" name="position" #name="ngModel" [(ngModel)]="playerService.selectedPlayer.position" placeholder="Position"/>
+  </div>
+  <div class="form-group">
+    <label>Team</label>
+    <input class="form-control" name="team" #name="ngModel" [(ngModel)]="playerService.selectedPlayer.team" placeholder="Team"/>
+  </div>
+</form>
