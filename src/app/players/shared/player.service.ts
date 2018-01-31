@@ -31,8 +31,8 @@ export class PlayerService {
     });
   }
 
-  deletePlayer(player : Player) {
-    this.playerList.remove()
+  deletePlayer(key : string) {
+    this.playerList.remove(key);
   }
 
 }

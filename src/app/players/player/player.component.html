@@ -13,11 +13,11 @@
     <input class="form-control" name="team" #name="ngModel" [(ngModel)]="playerService.selectedPlayer.team" placeholder="Team"/>
   </div>
   <div class="form-group">
-    <button type="submit" class="btn btn-primary" [disabled]="!playerForm.valid">
+    <button *ngIf="playerService.selectedPlayer.$key == null" type="submit" class="btn btn-primary" [disabled]="!playerForm.valid">
       <span class="fa fa-floppy-o"></span> Draft Player</button>
-    <!--<button *ngif="playerService.selectedPlayer.$key != ''"type="submit" class="btn btn-primary" [disabled]="!playerForm.valid">-->
-      <!--<span class="fa fa-floppy-o"></span> Edit Player</button>-->
-    <button type="button" class="btn btn-danger">
+    <button *ngIf="playerService.selectedPlayer.$key != null" type="submit" class="btn btn-primary" [disabled]="!playerForm.valid">
+      <span class="fa fa-floppy-o"></span> Edit Player</button>
+    <button *ngIf="playerService.selectedPlayer.$key != null" type="button" class="btn btn-danger" (click) ="onDelete(playerForm)">
       <span class="fa fa-trash"></span> Delete Player</button>
     <button type="button" class="btn btn-info" (click) ="resetForm()">
       <span class="fa fa-repeat"></span> Reset Form</button>

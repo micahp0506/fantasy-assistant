@@ -1,5 +1,5 @@
 export class Player {
-  $key: string;
+  $key: null;
   name: string;
   position: string;
   team: string;

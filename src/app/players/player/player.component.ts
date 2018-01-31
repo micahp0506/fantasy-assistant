@@ -18,7 +18,7 @@ export class PlayerComponent implements OnInit {
 
 
   onSubmit(form : NgForm) {
-    if (form.value.$key == '') {
+    if (form.value.$key == null) {
       this.playerService.insertPlayer(form.value);
     } else {
       this.playerService.updatePlayer(form.value);
@@ -31,11 +31,18 @@ export class PlayerComponent implements OnInit {
       form.reset();
     }
     this.playerService.selectedPlayer = {
-      $key: '',
+      $key: null,
       name: '',
       position: '',
       team: ''
     };
+  }
+
+  onDelete(form : NgForm) {
+    if (confirm(`Are you sure you want to delete ${form.value.name} from your team?`)==true) {
+      this.playerService.deletePlayer(form.value.$key);
+      this.resetForm(form);
+    }
   }
 
 }
