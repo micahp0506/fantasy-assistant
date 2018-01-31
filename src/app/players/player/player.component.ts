@@ -13,6 +13,12 @@ export class PlayerComponent implements OnInit {
   constructor(private playerService : PlayerService) { }
 
   ngOnInit() {
+
+  }
+
+
+  onSubmit(form : NgForm) {
+    this.playerService.insertPlayer(form.value);
   }
 
 }
