@@ -23,4 +23,16 @@ export class PlayerService {
     });
   }
 
+  updatePlayer(player : Player) {
+    this.playerList.update(player.$key, {
+      name: player.name,
+      position: player.position,
+      team: player.team
+    });
+  }
+
+  deletePlayer(player : Player) {
+    this.playerList.remove()
+  }
+
 }

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireList } from 'angularfire2/database';
 
 import { PlayerService } from '../shared/player.service';
 import { Player } from '../shared/player.model';
@@ -11,11 +10,23 @@ import { Player } from '../shared/player.model';
 })
 export class PlayerListComponent implements OnInit {
 
-  playerList : AngularFireList<Player>
+  playerList : Player[];
   constructor(private playerService : PlayerService) { }
 
   ngOnInit() {
-    this.playerService.getData();
+    let players = this.playerService.getData();
+    players.snapshotChanges().subscribe(item => {
+      this.playerList = [];
+      item.forEach(e =>{
+        let player = e.payload.toJSON();
+        player["$key"] = e.key;
+        this.playerList.push(player as Player);
+      });
+    });
+  }
+
+  onItemClick(player : Player) {
+    this.playerService.selectedPlayer = Object.assign({},player);
   }
 
 }

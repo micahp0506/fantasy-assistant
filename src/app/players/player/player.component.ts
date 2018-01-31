@@ -18,7 +18,11 @@ export class PlayerComponent implements OnInit {
 
 
   onSubmit(form : NgForm) {
-    this.playerService.insertPlayer(form.value);
+    if (form.value.$key == '') {
+      this.playerService.insertPlayer(form.value);
+    } else {
+      this.playerService.updatePlayer(form.value);
+    }
     this.resetForm(form);
   }
 

@@ -1,4 +1,5 @@
 <form #playerForm="ngForm" (ngSubmit)="onSubmit(playerForm)">
+  <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="playerService.selectedPlayer.$key">
   <div class="form-group">
     <label>Name</label>
     <input class="form-control" name="name" #name="ngModel" [(ngModel)]="playerService.selectedPlayer.name" placeholder="Full Name" required/>
@@ -14,6 +15,8 @@
   <div class="form-group">
     <button type="submit" class="btn btn-primary" [disabled]="!playerForm.valid">
       <span class="fa fa-floppy-o"></span> Draft Player</button>
+    <!--<button *ngif="playerService.selectedPlayer.$key != ''"type="submit" class="btn btn-primary" [disabled]="!playerForm.valid">-->
+      <!--<span class="fa fa-floppy-o"></span> Edit Player</button>-->
     <button type="button" class="btn btn-danger">
       <span class="fa fa-trash"></span> Delete Player</button>
     <button type="button" class="btn btn-info" (click) ="resetForm()">
