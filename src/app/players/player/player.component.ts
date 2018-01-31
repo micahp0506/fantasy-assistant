@@ -13,12 +13,25 @@ export class PlayerComponent implements OnInit {
   constructor(private playerService : PlayerService) { }
 
   ngOnInit() {
-
+    this.resetForm();
   }
 
 
   onSubmit(form : NgForm) {
     this.playerService.insertPlayer(form.value);
+    this.resetForm(form);
+  }
+
+  resetForm(form? : NgForm) {
+    if (form != null) {
+      form.reset();
+    }
+    this.playerService.selectedPlayer = {
+      $key: '',
+      name: '',
+      position: '',
+      team: ''
+    };
   }
 
 }
