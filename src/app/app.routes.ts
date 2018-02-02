@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { OtherComponent } from './other/other.component';
+import { PlayersComponent } from './players/players.component';
 import { AuthGuard } from './auth.service';
 import { SignupComponent } from './signup/signup.component';
 import { EmailComponent } from './email/email.component';

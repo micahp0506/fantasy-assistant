@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
 import { moveIn, fallIn, moveInLeft } from '../router.animations';
 import { PlayerService } from './shared/player.service'
@@ -14,7 +15,7 @@ export class PlayersComponent implements OnInit {
 
   name: any;
   state: string = '';
-  constructor(private playerService : PlayerService,public af: AngularFire,private router: Router) {
+  constructor(private playerService : PlayerService,public af: AngularFireAuth,private router: Router) {
 
     this.af.auth.subscribe(auth => {
       if(auth) {

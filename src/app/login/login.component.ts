@@ -1,5 +1,6 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
-import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
 import { moveIn } from '../router.animations';
 
@@ -13,7 +14,7 @@ import { moveIn } from '../router.animations';
 export class LoginComponent implements OnInit {
 
   error: any;
-  constructor(public af: AngularFire,private router: Router) {
+  constructor(public af: AngularFireAuth,private router: Router) {
 
     this.af.auth.subscribe(auth => {
       if(auth) {
