@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { FormsModule } from '@angular/forms';
 
@@ -13,7 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { EmailComponent } from './email/email.component';
 import { SignupComponent } from './signup/signup.component';
 import { MembersComponent } from './members/members.component';
-import { AuthGuard } from './auth.service';
+import { AuthService } from './auth.service';
 import { routes } from './app.routes';
 
 
@@ -32,10 +33,11 @@ import { routes } from './app.routes';
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
+    AngularFireAuthModule,
     FormsModule,
     routes
   ],
-  providers: [AuthGuard],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

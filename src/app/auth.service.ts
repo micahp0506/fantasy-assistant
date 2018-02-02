@@ -1,24 +1,67 @@
 import { CanActivate, Router } from '@angular/router';
-import { AngularFireAuth } from "angularfire2/auth";
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs/Rx";
+import { AngularFireAuth } from 'angularfire2/auth';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Rx';
+import * as firebase from 'firebase/app';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class AuthService  {
+  constructor(private af: AngularFireAuth, private router: Router) {
+  }
 
-  constructor(private auth: AngularFireAuth, private router: Router) {}
-
-  canActivate(): Observable<boolean> {
-    return Observable.from(this.auth)
-      .take(1)
-      .map(state => !!state)
-      .do(authenticated => {
-        if
-        (!authenticated) this.router.navigate([ '/login' ]);
+  signUp(email: string, password: string) {
+    this.af
+      .auth
+      .createUserWithEmailAndPassword(email, password)
+      .then(success => {
+        this.router.navigate(['/players']);
+        console.log('Noice, it worked!', success);
       })
+      .catch(err => {
+        console.log('Something went wrong:',err.message);
+      });
+  }
+
+  logIn(email: string, password: string) {
+    this.af
+      .auth
+      .signInWithEmailAndPassword(email, password)
+      .then(success => {
+        this.router.navigate(['/players']);
+        console.log('Noice, it worked!', success);
+      })
+      .catch(err => {
+        console.log('Something went wrong:',err.message);
+      });
+  }
+
+  loginGoogle() {
+    this.af
+      .auth
+      .signInWithPopup(new firebase.auth.GoogleAuthProvider())
+      .then(success => {
+        this.router.navigate(['/players']);
+        console.log('Noice, it worked!', success);
+      })
+      .catch(err => {
+        console.log('Something went wrong:',err.message);
+      })
+  }
+
+  logOut() {
+    this.af
+      .auth
+      .signOut()
+      .then(success => {
+        this.router.navigate(['/login']);
+        console.log('Noice, it worked!', success);
+      })
+      .catch(err => {
+        console.log('Something went wrong:',err.message);
+      });
   }
 
 }

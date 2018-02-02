@@ -18,21 +18,21 @@ export class MembersComponent implements OnInit {
 
   constructor(public af: AngularFireAuth,private router: Router) {
 
-    this.af.auth.subscribe(auth => {
-      if(auth) {
-        this.name = auth;
-      }
-    });
+    // this.af.auth.subscribe(auth => {
+    //   if(auth) {
+    //     this.name = auth;
+    //   }
+    // });
 
   }
 
   ngOnInit() {
   }
 
-  logout() {
-    this.af.auth.logout();
-    console.log('logged out');
-    this.router.navigateByUrl('/login');
-  }
+  // logout() {
+  //   this.af.auth.logout();
+  //   console.log('logged out');
+  //   this.router.navigateByUrl('/login');
+  // }
 
 }

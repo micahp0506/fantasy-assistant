@@ -3,7 +3,8 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
 import { moveIn, fallIn, moveInLeft } from '../router.animations';
-import { PlayerService } from './shared/player.service'
+import { PlayerService } from './shared/player.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-players',
@@ -15,13 +16,13 @@ export class PlayersComponent implements OnInit {
 
   name: any;
   state: string = '';
-  constructor(private playerService : PlayerService,public af: AngularFireAuth,private router: Router) {
+  constructor(private playerService : PlayerService,public af: AngularFireAuth,private auth: AuthService) {
 
-    this.af.auth.subscribe(auth => {
-      if(auth) {
-        this.name = auth;
-      }
-    });
+    // this.af.auth.subscribe(auth => {
+    //   if(auth) {
+    //     this.name = auth;
+    //   }
+    // });
 
   }
 
@@ -29,9 +30,7 @@ export class PlayersComponent implements OnInit {
   }
 
   logout() {
-    this.af.auth.logout();
-    console.log('logged out');
-    this.router.navigateByUrl('/login');
+    this.auth.logOut();
   }
 
 }

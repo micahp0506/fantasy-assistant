@@ -3,6 +3,8 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
 import { moveIn, fallIn } from '../router.animations';
+import { AuthService } from '../auth.service';
+
 
 @Component({
   selector: 'app-signup',
@@ -16,7 +18,7 @@ export class SignupComponent implements OnInit {
   state: string = '';
   error: any;
 
-  constructor(public af: AngularFireAuth,private router: Router) {
+  constructor(public af: AngularFireAuth,private auth: AuthService) {
 
   }
 
@@ -25,16 +27,9 @@ export class SignupComponent implements OnInit {
 
   onSubmit(formData) {
     if(formData.valid) {
-      this.af.auth.createUser({
-        email: formData.value.email,
-        password: formData.value.password
-      }).then(
-        (success) => {
-          this.router.navigate(['/players'])
-        }).catch(
-        (err) => {
-          this.error = err;
-        })
+      let email= formData.value.email;
+      let password= formData.value.password;
+      this.auth.signUp(email, password);
     }
   }
 
