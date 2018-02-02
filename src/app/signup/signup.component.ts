@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { Router } from '@angular/router';
 import { moveIn, fallIn } from '../router.animations';
 import { AuthService } from '../auth.service';
 
