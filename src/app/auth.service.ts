@@ -12,7 +12,7 @@ export class AuthService  {
   constructor(private af: AngularFireAuth, private router: Router) {
   }
 
-  signUp(email: string, password: string) {
+  signUp(email: string, password: string, cb) {
     this.af
       .auth
       .createUserWithEmailAndPassword(email, password)
@@ -22,6 +22,7 @@ export class AuthService  {
       })
       .catch(err => {
         console.log('Something went wrong:',err.message);
+        cb(err);
       });
   }
 

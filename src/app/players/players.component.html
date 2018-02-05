@@ -1,17 +1,16 @@
 <div class="form-container" id="toolbar">
-  <header [@fallIn]="state">
-    <button (click)="logout()" class="basic-btn">Logout</button>
+  <header>
+    <button (click)="logout()" class="basic-btn">Logout {{ userName }}</button>
   </header>
-  <div id="page" [@moveInLeft]="state">
-    {{name.auth}}
-    <h2>Hey {{ name.auth.displayName }}! welcome to your draft</h2>
-    <div class="row">
-      <div class="col-md-7">
-        <app-player></app-player>
-      </div>
-      <div class="col-md-5">
-        <app-player-list></app-player-list>
-      </div>
+  <div id="page">
+    <h2>Hey {{ userName }}! welcome to your draft</h2>
+  </div>
+  <div class="row">
+    <div class="col-md-7">
+      <app-player></app-player>
+    </div>
+    <div class="col-md-5 bottom">
+      <app-player-list></app-player-list>
     </div>
   </div>
 </div>

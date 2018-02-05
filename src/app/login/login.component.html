@@ -4,7 +4,7 @@
   <span class="error" *ngIf="error">{{ error }}</span>
 
   <button (click)="loginGoogle()" id="google">Login With Google</button>
-  <button routerLink="/login-email" id="email">Email</button>
+  <button (click)="loginEmail()" id="email">Login With Email</button>
 
   <a routerLink="/signup" routerLinkActive="active" class="alc">No account? <strong>Create one here</strong></a>
 </div>

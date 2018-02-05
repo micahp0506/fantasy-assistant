@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { moveIn, fallIn } from '../router.animations';
 import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-email',
   templateUrl: './email.component.html',
-  styleUrls: ['./email.component.css'],
-  animations: [moveIn(), fallIn()],
-  host: {'[@moveIn]': ''}
+  styleUrls: ['./email.component.css']
 })
 export class EmailComponent implements OnInit {
 

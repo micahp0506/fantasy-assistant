@@ -5,6 +5,7 @@ input.ng-invalid.ng-dirty {
 
 button,ul.list-group.hover li:hover {
   cursor: pointer;
+  border-color: darkblue;
 }
 
 body {

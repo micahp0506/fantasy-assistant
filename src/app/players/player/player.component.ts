@@ -10,7 +10,11 @@ import { PlayerService } from '../shared/player.service';
 })
 export class PlayerComponent implements OnInit {
 
-  constructor(private playerService : PlayerService) { }
+  constructor(private playerService : PlayerService) {
+    console.log("playerService", this.playerService);
+    debugger;
+  }
+
 
   ngOnInit() {
     this.resetForm();
@@ -27,6 +31,8 @@ export class PlayerComponent implements OnInit {
   }
 
   resetForm(form? : NgForm) {
+    console.log("form", form);
+    debugger;
     if (form != null) {
       form.reset();
     }

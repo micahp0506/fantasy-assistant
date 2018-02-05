@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
-import { moveIn, fallIn, moveInLeft } from '../router.animations';
 import { PlayerService } from './shared/player.service';
 import { AuthService } from '../auth.service';
 
@@ -14,15 +13,17 @@ import { AuthService } from '../auth.service';
 })
 export class PlayersComponent implements OnInit {
 
-  name: any;
-  state: string = '';
+  userName: string = '';
   constructor(private playerService : PlayerService,public af: AngularFireAuth,private auth: AuthService) {
 
-    // this.af.auth.subscribe(auth => {
-    //   if(auth) {
-    //     this.name = auth;
-    //   }
-    // });
+    this.af.authState.subscribe(auth => {
+      if(auth && auth.displayName != null) {
+        console.log("auth", auth);
+        this.userName = auth.displayName;
+      } else if (auth && auth.displayName == null && auth.email != null) {
+        this.userName = auth.email;
+      }
+    });
 
   }
 
