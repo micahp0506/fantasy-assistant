@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { PlayerService } from '../shared/player.service';
+import { PlayerService } from '../../services/player.service';
 import { Player } from '../shared/player.model';
 
 @Component({

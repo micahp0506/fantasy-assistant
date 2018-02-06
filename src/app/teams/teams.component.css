@@ -1,0 +1,36 @@
+#toolbar {
+  padding:0;
+  width:70%;
+  margin-left:-35%;
+}
+
+header {
+  background:#3B8598;
+  width:100%;
+}
+
+.basic-btn {
+  display: inline-block;
+  text-align: left;
+  margin:0;
+}
+
+#page {
+  padding:3em;
+  margin:0;
+}
+
+#page img {
+  margin-top:30px;
+}
+
+h2 {
+  margin:0;
+}
+
+.bottom {
+  margin-bottom: 20px;
+}
+.center {
+  text-align: center;
+}

@@ -1,0 +1,59 @@
+<div class="form-container" id="toolbar">
+  <header>
+    <button (click)="logout()" class="basic-btn">Logout {{ userName }}</button>
+  </header>
+  <form #teamForm="ngForm" (ngSubmit)="teamSubmit(teamForm)" class="">
+    <div id="page">
+      <h2 class="center">Welcome to your draft. Please choose a team name. </h2>
+    </div>
+    <div class="form-group row">
+      <div class="col-md-4"></div>
+      <input class="form-control col-md-4" name="name" #name="ngModel" [(ngModel)]="teamService.selectedTeam.name" placeholder="Team Name" required/>
+      <div class="col-md-4"></div>
+    </div>
+    <!--<div class="form-group">-->
+      <!--<label>Position</label>-->
+      <!--<input class="form-control" name="position" #name="ngModel" [(ngModel)]="playerService.selectedPlayer.position" placeholder="Position"/>-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+      <!--<label>Team</label>-->
+      <!--<input class="form-control" name="team" #name="ngModel" [(ngModel)]="playerService.selectedPlayer.team" placeholder="Team"/>-->
+    <!--</div>-->
+    <div class="form-group row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <button type="submit" class="btn btn-primary" [disabled]="!teamForm.valid">
+          <span class="fa fa-floppy-o"></span> Draft Team</button>
+      </div>
+      <div class="col-md-4"></div>
+      <!--<button *ngIf="playerService.selectedPlayer.$key != null" type="submit" class="btn btn-primary" [disabled]="!playerForm.valid">-->
+        <!--<span class="fa fa-floppy-o"></span> Edit Player</button>-->
+      <!--<button *ngIf="playerService.selectedPlayer.$key != null" type="button" class="btn btn-danger" (click) ="onDelete(playerForm)">-->
+        <!--<span class="fa fa-trash"></span> Delete Player</button>-->
+      <!--<button type="button" class="btn btn-info" (click) ="resetForm()">-->
+        <!--<span class="fa fa-repeat"></span> Reset Form</button>-->
+    </div>
+  </form>
+  <!--<div class="row">-->
+    <!--<div class="col-md-7">-->
+      <!--<app-player></app-player>-->
+    <!--</div>-->
+    <!--<div class="col-md-5 bottom">-->
+      <!--<app-player-list></app-player-list>-->
+    <!--</div>-->
+  <!--</div>-->
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

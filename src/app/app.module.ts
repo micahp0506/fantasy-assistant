@@ -9,11 +9,12 @@ import { AppComponent } from './app.component';
 import { PlayersComponent } from './players/players.component';
 import { PlayerComponent } from './players/player/player.component';
 import { PlayerListComponent } from './players/player-list/player-list.component';
+import { TeamsComponent } from './teams/teams.component';
 import { environment } from '../environments/environment';
 import { LoginComponent } from './login/login.component';
 import { EmailComponent } from './email/email.component';
 import { SignupComponent } from './signup/signup.component';
-import { AuthService } from './auth.service';
+import { AuthService } from './services/auth.service';
 import { routes } from './app.routes';
 
 
@@ -25,7 +26,8 @@ import { routes } from './app.routes';
     PlayerListComponent,
     LoginComponent,
     EmailComponent,
-    SignupComponent
+    SignupComponent,
+    TeamsComponent
   ],
   imports: [
     BrowserModule,
