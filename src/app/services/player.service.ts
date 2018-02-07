@@ -11,8 +11,17 @@ export class PlayerService {
   constructor(private firebase: AngularFireDatabase) { }
 
   getData() {
-    this.playerList = this.firebase.list('players');
-    return this.playerList;
+    let players = this.firebase.list('players');
+    let playerList = [];
+    players.snapshotChanges().subscribe(item => {
+      item.forEach(e =>{
+        let player = e.payload.toJSON();
+        player["$key"] = e.key;
+        playerList.push(player as Player);
+      });
+    });
+
+    return playerList;
   }
 
   insertPlayer(player : Player) {

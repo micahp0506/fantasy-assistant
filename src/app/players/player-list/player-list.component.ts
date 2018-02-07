@@ -14,15 +14,7 @@ export class PlayerListComponent implements OnInit {
   constructor(private playerService : PlayerService) { }
 
   ngOnInit() {
-    let players = this.playerService.getData();
-    players.snapshotChanges().subscribe(item => {
-      this.playerList = [];
-      item.forEach(e =>{
-        let player = e.payload.toJSON();
-        player["$key"] = e.key;
-        this.playerList.push(player as Player);
-      });
-    });
+    this.playerList = this.playerService.getData();
   }
 
   onItemClick(player : Player) {
