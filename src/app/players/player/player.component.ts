@@ -2,15 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { PlayerService } from '../../services/player.service';
+import { TeamService } from '../../services/team.service';
 
 @Component({
   selector: 'app-player',
   templateUrl: './player.component.html',
+  inputs: ['selectedTeam'],
+  providers: [PlayerService]
 })
 export class PlayerComponent implements OnInit {
 
-  constructor(private playerService : PlayerService) {
-    console.log("playerService", this.playerService);
+  constructor(private playerService : PlayerService, private teamService : TeamService) {
+    console.log("this", this);
     debugger;
   }
 
@@ -30,8 +33,6 @@ export class PlayerComponent implements OnInit {
   }
 
   resetForm(form? : NgForm) {
-    console.log("form", form);
-    debugger;
     if (form != null) {
       form.reset();
     }

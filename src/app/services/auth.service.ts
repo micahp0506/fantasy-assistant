@@ -16,7 +16,7 @@ export class AuthService  {
       .auth
       .createUserWithEmailAndPassword(email, password)
       .then(success => {
-        this.router.navigate(['/players']);
+        this.router.navigate(['/teams']);
         console.log('Noice, it worked!', success);
       })
       .catch(err => {
@@ -30,7 +30,7 @@ export class AuthService  {
       .auth
       .signInWithEmailAndPassword(email, password)
       .then(success => {
-        this.router.navigate(['/players']);
+        this.router.navigate(['/teams']);
         console.log('Noice, it worked!', success);
       })
       .catch(err => {
@@ -43,7 +43,7 @@ export class AuthService  {
       .auth
       .signInWithPopup(new firebase.auth.GoogleAuthProvider())
       .then(success => {
-        this.router.navigate(['/players']);
+        this.router.navigate(['/teams']);
         console.log('Noice, it worked!', success);
       })
       .catch(err => {

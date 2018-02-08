@@ -37,13 +37,12 @@ export class TeamsComponent implements OnInit {
 
   newTeam() {
     this.teamService.insertTeam(this.usersNewTeam, ((result)=> {
-      this.selectedTeam = result;
-      console.log("this.selectedTeam", this.selectedTeam)
+      this.teamService.selectedTeam = result;
     }));
   }
 
   existingTeam(team: Team) {
-    this.selectedTeam = team;
+    this.teamService.selectedTeam = this.usersExistingTeam;
   }
 
   logout() {

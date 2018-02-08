@@ -6,7 +6,7 @@
     <div id="page">
       <h2 class="center">Welcome to your draft. Please choose a team. </h2>
     </div>
-    <div class="form-group row" *ngIf="teams.length > 0">
+    <div class="form-group row" *ngIf="teams.length > 0 && !teamService.selectedTeam.owner">
       <div class="col-md-3"></div>
       <div class="col-md-3">
         <select class=""  id="selectedTeam" [(ngModel)]="usersExistingTeam" [ngModelOptions]="{standalone: true}">
@@ -19,7 +19,7 @@
       </div>
       <div class="col-md-3"></div>
     </div>
-    <div class="form-group row" *ngIf="teams.length > 0">
+    <div class="form-group row" *ngIf="teams.length > 0 && !teamService.selectedTeam.owner">
       <div class="col-md-4"></div>
       <div class="col-md-4 center">
         <h4>OR</h4>
@@ -27,7 +27,7 @@
       <div class="col-md-4"></div>
     </div>
   </form>
-  <form #newTeamForm="ngForm" (ngSubmit) = "newTeam()" >
+  <form #newTeamForm="ngForm" (ngSubmit) = "newTeam()" *ngIf="!teamService.selectedTeam.owner">
     <div class="form-group row">
       <div class="col-md-3"></div>
       <div class="col-md-3">
@@ -40,6 +40,14 @@
       <div class="col-md-3"></div>
     </div>
   </form>
+  <div class="row" *ngIf="teamService.selectedTeam.owner">
+    <div class="col-md-7">
+      <app-player></app-player>
+    </div>
+    <div class="col-md-5 bottom">
+      <app-player-list></app-player-list>
+    </div>
+  </div>
 </div>
 
 
