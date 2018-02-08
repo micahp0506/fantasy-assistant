@@ -29,7 +29,8 @@ export class TeamService {
   }
 
   insertTeam(team : Team, cb) {
-    let teamObj = {
+    let teamObj: {[key: string]: any};
+    teamObj = {
       name: team.name,
       owner: this.user,
       players: team.players
@@ -44,9 +45,10 @@ export class TeamService {
   getTeamsByUser(cb) {
     let teams = this.db.list('Teams');
     let teamList = [];
+    let team: {[key: string]: any};
     teams.snapshotChanges().subscribe(item => {
       item.forEach(e =>{
-        let team = e.payload.toJSON();
+        team = e.payload.toJSON();
         team.key = e.key;
         if (team.owner === this.user) {
           teamList.push(team as Team);
