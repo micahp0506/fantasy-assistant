@@ -21,6 +21,9 @@ export class PlayerListComponent implements OnInit {
   }
 
   onItemClick(player : Player) {
+    console.log("player", player);
+    console.log("this", this);
+    debugger;
     this.playerService.selectedPlayer = Object.assign({},player);
   }
 

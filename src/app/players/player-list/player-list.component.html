@@ -1,5 +1,19 @@
-<ul class="list-group hover ">
-  <li class="list-group-item" *ngFor="let player of playerList" (click)="onItemClick(player)">
-    {{player.name}} - {{player.position}}
-  </li>
-</ul>
+<table class="table table-striped table-hover">
+  <tr>
+    <th>Name</th>
+    <th>Position</th>
+    <th>Team</th>
+  </tr>
+  <tr *ngFor="let player of playerList" (click)="onItemClick(player)">
+    <td>{{player.name}}</td>
+    <td>{{player.position}}</td>
+    <td>{{player.team}}</td>
+  </tr>
+</table>
+
+
+<!--<ul class="list-group hover ">-->
+  <!--<li class="list-group-item" *ngFor="let player of playerList" (click)="onItemClick(player)">-->
+    <!--{{player.name}} - {{player.position}}-->
+  <!--</li>-->
+<!--</ul>-->
