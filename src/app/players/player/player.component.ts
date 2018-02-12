@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Player } from '../shared/player.model';
+import { Player } from '../../models/player.model';
 import { PlayerService } from '../../services/player.service';
 import { TeamService } from '../../services/team.service';
 
