@@ -5,7 +5,7 @@ import { Player } from '../models/player.model'
 
 @Injectable()
 export class PlayerService {
-  players: Observable<any[]>;
+  players: Observable<any>;
   playerList : AngularFireList<any>;
   selectedPlayer : Player = new Player();
   constructor(private firebase: AngularFireDatabase) {

@@ -11,7 +11,7 @@ import { TeamService } from '../../services/team.service';
   providers: [PlayerService]
 })
 export class PlayerComponent implements OnInit{
-  playerList = [];
+  playerList;
   constructor(private playerService : PlayerService, private teamService : TeamService) {
   }
 
