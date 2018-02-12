@@ -32,15 +32,15 @@ export class PlayerService {
   }
 
   updatePlayer(player : Player) {
-    this.teamList.update(player.$key, {
+    this.teamList.update(player.id, {
       name: player.name,
       position: player.position,
       team: player.team
     });
   }
 
-  deletePlayer(key : string) {
-    this.teamList.remove(key);
+  deletePlayer(id : string) {
+    this.teamList.remove(id);
   }
 
 }

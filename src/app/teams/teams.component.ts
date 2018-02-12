@@ -43,7 +43,12 @@ export class TeamsComponent implements OnInit {
     }));
   }
 
-  existingTeam(team: Team) {
+  existingTeam() {
+    let tempArray = [];
+    for (const player in this.usersExistingTeam.players) {
+      tempArray.push(this.usersExistingTeam.players[player]);
+    }
+    this.usersExistingTeam.players = tempArray;
     this.teamService.selectedTeam = this.usersExistingTeam;
     this.showDraft = false;
   }

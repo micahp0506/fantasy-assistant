@@ -13,6 +13,7 @@ import { TeamService } from '../../services/team.service';
 export class PlayerComponent implements OnInit, OnChanges{
   playerList;
   selectedTeam;
+  selectedPlayer;
   constructor(private playerService : PlayerService, private teamService : TeamService) {
   }
 
@@ -36,10 +37,12 @@ export class PlayerComponent implements OnInit, OnChanges{
   }
 
   onSubmit(form : NgForm) {
-    if (form.value.$key == null) {
+    console.log("form", form);
+    debugger;
+    if (form.value.id == null) {
       this.teamService.insertPlayer(form.value);
     } else {
-      this.playerService.updatePlayer(form.value);
+      this.teamService.updatePlayer(form.value);
     }
     this.resetForm(form);
   }
@@ -48,8 +51,8 @@ export class PlayerComponent implements OnInit, OnChanges{
     if (form != null) {
       form.reset();
     }
-    this.playerService.selectedPlayer = {
-      $key: null,
+    this.selectedPlayer = {
+      id: null,
       name: '',
       position: '',
       team: ''
@@ -58,13 +61,15 @@ export class PlayerComponent implements OnInit, OnChanges{
 
   onDelete(form : NgForm) {
     if (confirm(`Are you sure you want to delete ${form.value.name} from your team?`)==true) {
-      this.playerService.deletePlayer(form.value.$key);
+      this.playerService.deletePlayer(form.value.id);
       this.resetForm(form);
     }
   }
 
   onItemClick(player : Player) {
-    this.playerService.selectedPlayer = Object.assign({},player);
+    console.log("player", player)
+    debugger;
+    this.selectedPlayer = Object.assign({},player);
   }
 
 

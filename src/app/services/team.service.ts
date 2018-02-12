@@ -60,11 +60,11 @@ export class TeamService {
 
   insertPlayer(player : Player) {
     if (this.selectedTeam.players == undefined || this.selectedTeam.players == -1) {
-      this.selectedTeam.players = [];
+      this.selectedTeam.players = {};
 
     }
     this.selectedTeam.players.push({
-      key: Date.now() *-1,
+      id: Date.now() *-1,
       name: player.name,
       position: player.position,
       team: player.team
@@ -72,5 +72,17 @@ export class TeamService {
     this.teamList.update(this.selectedTeam.key, {players: this.selectedTeam.players});
   }
 
-  
+  updatePlayer(player : Player) {
+    this.selectedTeam.players.map((p)=> {
+      if (p.id == player.id) {
+        console.log("p", p);
+        p.id = player.id;
+        p.name = player.name;
+        p.position = player.position;
+        p.team = player.team;
+      }
+    });
+
+    this.teamList.update(this.selectedTeam.key, {players: this.selectedTeam.players});
+  }
 }
