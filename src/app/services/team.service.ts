@@ -4,11 +4,10 @@ import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/switchMap';
-import * as firebase from 'firebase';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AuthService } from './auth.service';
-
+import { Player } from '../models/player.model';
 import { Team } from '../models/team.model'
 
 @Injectable()
@@ -28,7 +27,7 @@ export class TeamService {
     });
   }
 
-  insertTeam(team : Team, cb) {
+  newTeam(team : Team, cb) {
     let teamObj: {[key: string]: any};
     teamObj = {
       name: team.name,
@@ -57,24 +56,21 @@ export class TeamService {
     });
 
     cb(teamList);
-    // return teamList;
   }
 
-  // getData() {
-  //   this.playerList = this.firebase.list('players');
-  //   return this.playerList;
-  // }
+  insertPlayer(player : Player) {
+    if (this.selectedTeam.players == undefined || this.selectedTeam.players == -1) {
+      this.selectedTeam.players = [];
 
-  // updatePlayer(player : Player) {
-  //   this.playerList.update(player.$key, {
-  //     name: player.name,
-  //     position: player.position,
-  //     team: player.team
-  //   });
-  // }
+    }
+    this.selectedTeam.players.push({
+      key: Date.now() *-1,
+      name: player.name,
+      position: player.position,
+      team: player.team
+    });
+    this.teamList.update(this.selectedTeam.key, {players: this.selectedTeam.players});
+  }
 
-  // deletePlayer(key : string) {
-  //   this.teamList.remove(key);
-  // }
-
+  
 }

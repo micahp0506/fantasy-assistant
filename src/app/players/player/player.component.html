@@ -48,7 +48,7 @@
       <th>Position</th>
       <th>Team</th>
     </tr>
-    <tr class="table-striped" *ngFor="let player of playerList | async" (click)="onItemClick(player)">
+    <tr class="table-striped" *ngFor="let player of selectedTeam.players" (click)="onItemClick(player)">
       <td>{{player.name}}</td>
       <td>{{player.position}}</td>
       <td>{{player.team}}</td>

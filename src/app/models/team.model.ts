@@ -5,5 +5,5 @@ export class Team {
   key: null;
   name: string = null;
   owner: string = null;
-  players= -1;
+  players;
 }

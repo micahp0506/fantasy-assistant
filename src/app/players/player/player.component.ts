@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Player } from '../../models/player.model';
 import { PlayerService } from '../../services/player.service';
@@ -10,20 +10,34 @@ import { TeamService } from '../../services/team.service';
   inputs: ['selectedTeam'],
   providers: [PlayerService]
 })
-export class PlayerComponent implements OnInit{
+export class PlayerComponent implements OnInit, OnChanges{
   playerList;
+  selectedTeam;
   constructor(private playerService : PlayerService, private teamService : TeamService) {
   }
 
 
   ngOnInit() {
+    console.log("this", this);
+    debugger;
+    if (this.selectedTeam != null && this.selectedTeam.key == null && this.selectedTeam.players == -1) {
+      this.selectedTeam.players = [];
+    }
     this.resetForm();
-    this.playerList = this.playerService.players;
+    this.playerList = this.playerService.teams;
+  }
+
+  ngOnChanges() {
+    console.log("this", this);
+    debugger;
+    if (this.selectedTeam != null && this.selectedTeam.key != null && this.selectedTeam.players == -1) {
+      this.selectedTeam.players = [];
+    }
   }
 
   onSubmit(form : NgForm) {
     if (form.value.$key == null) {
-      this.playerService.insertPlayer(form.value);
+      this.teamService.insertPlayer(form.value);
     } else {
       this.playerService.updatePlayer(form.value);
     }

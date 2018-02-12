@@ -37,7 +37,7 @@ export class TeamsComponent implements OnInit {
   }
 
   newTeam() {
-    this.teamService.insertTeam(this.usersNewTeam, ((result)=> {
+    this.teamService.newTeam(this.usersNewTeam, ((result)=> {
       this.teamService.selectedTeam = result;
       this.showDraft = false;
     }));
