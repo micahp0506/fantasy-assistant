@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-
+import { Player } from '../shared/player.model';
 import { PlayerService } from '../../services/player.service';
 import { TeamService } from '../../services/team.service';
 
@@ -10,18 +10,16 @@ import { TeamService } from '../../services/team.service';
   inputs: ['selectedTeam'],
   providers: [PlayerService]
 })
-export class PlayerComponent implements OnInit {
-
+export class PlayerComponent implements OnInit{
+  playerList = [];
   constructor(private playerService : PlayerService, private teamService : TeamService) {
-    console.log("this", this);
-    debugger;
   }
 
 
   ngOnInit() {
     this.resetForm();
+    this.playerList = this.playerService.players;
   }
-
 
   onSubmit(form : NgForm) {
     if (form.value.$key == null) {
@@ -50,5 +48,10 @@ export class PlayerComponent implements OnInit {
       this.resetForm(form);
     }
   }
+
+  onItemClick(player : Player) {
+    this.playerService.selectedPlayer = Object.assign({},player);
+  }
+
 
 }

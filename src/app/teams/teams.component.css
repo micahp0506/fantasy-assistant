@@ -1,7 +1,7 @@
 #toolbar {
   padding:0;
-  width:70%;
-  margin-left:-35%;
+  width:100%;
+  margin-left:-50%;
 }
 
 header {
@@ -33,4 +33,7 @@ h2 {
 }
 .center {
   text-align: center;
+}
+.form-container {
+  position: absolute;
 }

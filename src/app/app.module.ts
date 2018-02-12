@@ -9,7 +9,6 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { PlayersComponent } from './players/players.component';
 import { PlayerComponent } from './players/player/player.component';
-import { PlayerListComponent } from './players/player-list/player-list.component';
 import { TeamsComponent } from './teams/teams.component';
 import { environment } from '../environments/environment';
 import { LoginComponent } from './login/login.component';
@@ -24,7 +23,6 @@ import { routes } from './app.routes';
     AppComponent,
     PlayersComponent,
     PlayerComponent,
-    PlayerListComponent,
     LoginComponent,
     EmailComponent,
     SignupComponent,

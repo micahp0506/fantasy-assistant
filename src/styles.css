@@ -11,6 +11,7 @@ button,ul.list-group.hover li:hover {
 body {
   background:#E2E4E6;
   padding-top:4em;
+  width: 100%
 }
 
 .form-container {
