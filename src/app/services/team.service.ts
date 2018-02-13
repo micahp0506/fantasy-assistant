@@ -28,11 +28,13 @@ export class TeamService {
   }
 
   newTeam(team : Team, cb) {
+    console.log("team", team);
+    debugger;
     let teamObj: {[key: string]: any};
     teamObj = {
       name: team.name,
       owner: this.user,
-      players: team.players
+      players: []
     };
     this.teamList.push(teamObj)
     .then(success => {
