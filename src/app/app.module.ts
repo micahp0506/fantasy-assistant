@@ -7,8 +7,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { PlayersComponent } from './players/players.component';
-import { PlayerComponent } from './players/player/player.component';
+import { PlayerComponent } from './player/player.component';
 import { TeamsComponent } from './teams/teams.component';
 import { environment } from '../environments/environment';
 import { LoginComponent } from './login/login.component';
@@ -21,7 +20,6 @@ import { routes } from './app.routes';
 @NgModule({
   declarations: [
     AppComponent,
-    PlayersComponent,
     PlayerComponent,
     LoginComponent,
     EmailComponent,

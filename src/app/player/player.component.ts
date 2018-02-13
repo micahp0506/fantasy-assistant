@@ -1,13 +1,13 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Player } from '../../models/player.model';
-import { PlayerService } from '../../services/player.service';
-import { TeamService } from '../../services/team.service';
+import { Player } from '../models/player.model';
+import { PlayerService } from '../services/player.service';
+import { TeamService } from '../services/team.service';
 declare let jsPDF: any;
 
 @Component({
   selector: 'app-player',
-  templateUrl: './player.component.html',
+  templateUrl: 'player.component.html',
   inputs: ['selectedTeam'],
   providers: [PlayerService]
 })

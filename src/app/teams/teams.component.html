@@ -4,7 +4,9 @@
   </header>
   <form #existingTeamForm="ngForm" class="" >
     <div id="page">
-      <h2 class="center">Welcome to your draft. Please choose a team. </h2>
+      <h2 *ngIf="teams.length <= 0 && !teamService.selectedTeam.owner" class="center">Welcome to your draft. Please create a team. </h2>
+      <h2 *ngIf="teams.length > 0 && !teamService.selectedTeam.owner" class="center">Welcome to your draft. Please choose a team. </h2>
+      <h2 *ngIf="teamService.selectedTeam.owner" class="center">Drafting for {{teamService.selectedTeam.name}} </h2>
     </div>
     <div class="form-group row" *ngIf="teams.length > 0 && !teamService.selectedTeam.owner">
       <div class="col-md-3"></div>
