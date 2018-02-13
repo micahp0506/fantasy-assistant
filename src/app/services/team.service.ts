@@ -1,24 +1,18 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList, AngularFireAction } from 'angularfire2/database';
-import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/switchMap';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AuthService } from './auth.service';
-import { Player } from '../models/player.model';
 import { Team } from '../models/team.model'
 
 @Injectable()
 export class TeamService {
   selectedTeam : Team = new Team();
   user: string;
-  data;
   teamList;
   constructor(private db: AngularFireDatabase, private auth: AuthService,public af: AngularFireAuth) {
-    this.data = db;
-    this.teamList = this.data.list('Teams');
+    this.teamList = this.db.list('Teams');
 
     this.af.authState.subscribe(auth => {
       if(auth) {
@@ -28,8 +22,6 @@ export class TeamService {
   }
 
   newTeam(team : Team, cb) {
-    console.log("team", team);
-    debugger;
     let teamObj: {[key: string]: any};
     teamObj = {
       name: team.name,
@@ -58,33 +50,5 @@ export class TeamService {
     });
 
     cb(teamList);
-  }
-
-  insertPlayer(player : Player) {
-    if (this.selectedTeam.players == undefined || this.selectedTeam.players == -1) {
-      this.selectedTeam.players = {};
-
-    }
-    this.selectedTeam.players.push({
-      id: Date.now() *-1,
-      name: player.name,
-      position: player.position,
-      team: player.team
-    });
-    this.teamList.update(this.selectedTeam.key, {players: this.selectedTeam.players});
-  }
-
-  updatePlayer(player : Player) {
-    this.selectedTeam.players.map((p)=> {
-      if (p.id == player.id) {
-        console.log("p", p);
-        p.id = player.id;
-        p.name = player.name;
-        p.position = player.position;
-        p.team = player.team;
-      }
-    });
-
-    this.teamList.update(this.selectedTeam.key, {players: this.selectedTeam.players});
   }
 }

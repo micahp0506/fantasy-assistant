@@ -9,38 +9,48 @@ export class PlayerService {
   teams: Observable<any>;
   teamList : AngularFireList<any>;
   selectedPlayer : Player = new Player();
+  selectedTeam = this.teamService.selectedTeam;
   constructor(private firebase: AngularFireDatabase, private teamService: TeamService) {
     this.teamList = this.firebase.list('Teams');
-    this.teams = this.teamList.snapshotChanges().map(changes => {
-      console.log("changes", changes);
-      changes.map((c)=> {
-        console.log("c", c);
-      });
-      // return changes.map(c =>({key: c.payload.key, ...c.payload.val()}));
-    });
   }
 
   insertPlayer(player : Player) {
-    console.log("player", player);
-    console.log("this", this);
-    debugger;
-    this.teamList.push({
+    if (this.selectedTeam.players == undefined || this.selectedTeam.players == -1) {
+      this.selectedTeam.players = {};
+
+    }
+    this.selectedTeam.players.push({
+      id: Date.now() *-1,
       name: player.name,
       position: player.position,
       team: player.team
     });
+    this.teamList.update(this.selectedTeam.key, {players: this.selectedTeam.players});
   }
 
   updatePlayer(player : Player) {
-    this.teamList.update(player.id, {
-      name: player.name,
-      position: player.position,
-      team: player.team
+    this.selectedTeam.players.map((p)=> {
+      if (p.id == player.id) {
+        p.id = player.id;
+        p.name = player.name;
+        p.position = player.position;
+        p.team = player.team;
+      }
     });
+
+    this.teamList.update(this.selectedTeam.key, {players: this.selectedTeam.players});
   }
 
-  deletePlayer(id : string) {
-    this.teamList.remove(id);
+  deletePlayer(playerId) {
+    let tempArray = [];
+    this.selectedTeam.players.map((p)=> {
+      if (p.id != playerId) {
+        tempArray.push(p);
+      }
+    });
+
+    this.selectedTeam.players = tempArray;
+    this.teamList.update(this.selectedTeam.key, {players: this.selectedTeam.players});
   }
 
 }

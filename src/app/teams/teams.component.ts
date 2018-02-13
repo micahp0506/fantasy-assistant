@@ -19,7 +19,7 @@ export class TeamsComponent implements OnInit {
   selectedTeam : Team = new Team();
   userName: string = '';
   teams = [];
-  showDraft: boolean = true;
+  hideDraft: boolean = true;
   constructor(public af: AngularFireAuth,private teamService : TeamService,private auth: AuthService) {
     this.af.authState.subscribe(auth => {
       if(auth && auth.displayName != null) {
@@ -39,7 +39,7 @@ export class TeamsComponent implements OnInit {
   newTeam() {
     this.teamService.newTeam(this.usersNewTeam, ((result)=> {
       this.teamService.selectedTeam = result;
-      this.showDraft = false;
+      this.hideDraft = false;
     }));
   }
 
@@ -50,7 +50,7 @@ export class TeamsComponent implements OnInit {
     }
     this.usersExistingTeam.players = tempArray;
     this.teamService.selectedTeam = this.usersExistingTeam;
-    this.showDraft = false;
+    this.hideDraft = false;
   }
 
   logout() {

@@ -40,7 +40,7 @@
       <div class="col-md-3"></div>
     </div>
   </form>
-  <div class="" [hidden]="showDraft">
+  <div class="" *ngIf="teamService.selectedTeam.owner">
     <app-player [selectedTeam]="teamService.selectedTeam" ></app-player>
   </div>
 </div>

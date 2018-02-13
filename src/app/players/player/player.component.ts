@@ -19,8 +19,6 @@ export class PlayerComponent implements OnInit, OnChanges{
 
 
   ngOnInit() {
-    console.log("this", this);
-    debugger;
     if (this.selectedTeam != null && this.selectedTeam.key == null && this.selectedTeam.players == -1) {
       this.selectedTeam.players = [];
     }
@@ -29,20 +27,16 @@ export class PlayerComponent implements OnInit, OnChanges{
   }
 
   ngOnChanges() {
-    console.log("this", this);
-    debugger;
     if (this.selectedTeam != null && this.selectedTeam.key != null && this.selectedTeam.players == -1) {
       this.selectedTeam.players = [];
     }
   }
 
   onSubmit(form : NgForm) {
-    console.log("form", form);
-    debugger;
     if (form.value.id == null) {
-      this.teamService.insertPlayer(form.value);
+      this.playerService.insertPlayer(form.value);
     } else {
-      this.teamService.updatePlayer(form.value);
+      this.playerService.updatePlayer(form.value);
     }
     this.resetForm(form);
   }
@@ -55,7 +49,7 @@ export class PlayerComponent implements OnInit, OnChanges{
       id: null,
       name: '',
       position: '',
-      team: ''
+      team: '',
     };
   }
 
@@ -67,8 +61,6 @@ export class PlayerComponent implements OnInit, OnChanges{
   }
 
   onItemClick(player : Player) {
-    console.log("player", player)
-    debugger;
     this.selectedPlayer = Object.assign({},player);
   }
 
