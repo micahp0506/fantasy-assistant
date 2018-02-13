@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Player } from '../../models/player.model';
 import { PlayerService } from '../../services/player.service';
 import { TeamService } from '../../services/team.service';
+declare let jsPDF: any;
 
 @Component({
   selector: 'app-player',
@@ -65,4 +66,27 @@ export class PlayerComponent implements OnInit, OnChanges{
   }
 
 
+  downloadTeam() {
+    let teamName = this.selectedTeam.name;
+    let doc = new jsPDF('p', 'pt');
+    let col = [
+      {title: "Name", dataKey: "name"},
+      {title: "Position", dataKey: "position"},
+      {title: "Team", dataKey: "team"},
+     ];
+    let header = function(data) {
+      doc.setFontSize(18);
+      doc.setTextColor(40);
+      doc.setFontStyle('normal');
+      doc.text("Team: " + teamName, data.settings.margin.left, 50);
+    };
+    let options = {
+      addPageContent: header,
+      margin: {
+        top: 80
+      }
+    };
+    doc.autoTable(col, this.selectedTeam.players, options);
+    doc.save('Team.pdf');
+  }
 }
