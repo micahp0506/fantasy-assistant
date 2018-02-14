@@ -22,7 +22,7 @@ export class EmailComponent implements OnInit {
       console.log(formData.value);
       let email= formData.value.email;
       let password= formData.value.password;
-      this.auth.logIn(email, password, result => {
+      this.auth.logIn(email.toString(), password.toString(), result => {
         this.error = result.message;
         console.log("result", result);
       });
