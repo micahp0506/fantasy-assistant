@@ -25,7 +25,7 @@ export class AuthService  {
       });
   }
 
-  logIn(email: string, password: string) {
+  logIn(email: string, password: string, cb) {
     this.af
       .auth
       .signInWithEmailAndPassword(email, password)
@@ -35,6 +35,7 @@ export class AuthService  {
       })
       .catch(err => {
         console.log('Something went wrong:',err.message);
+        cb(err);
       });
   }
 

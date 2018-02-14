@@ -20,7 +20,7 @@ export class TeamsComponent implements OnInit {
   userName: string = '';
   teams = [];
   hideDraft: boolean = true;
-  constructor(public af: AngularFireAuth,private teamService : TeamService,private auth: AuthService) {
+  constructor(public af: AngularFireAuth,public teamService : TeamService,private auth: AuthService) {
     this.af.authState.subscribe(auth => {
       if(auth && auth.displayName != null) {
         this.userName = auth.displayName;
