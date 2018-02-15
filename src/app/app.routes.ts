@@ -8,7 +8,7 @@ import { EmailComponent } from './email/email.component';
 import { TeamsComponent } from './teams/teams.component';
 
 export const router: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'login-email', component: EmailComponent },
